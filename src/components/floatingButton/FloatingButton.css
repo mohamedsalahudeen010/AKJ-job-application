@@ -1,0 +1,34 @@
+.float{
+    background-color: rgb(45, 55, 128);
+    width: 12rem;
+    height: 4rem;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    border-radius: 1rem;
+    position: absolute;
+    box-shadow: 1rem 1rem 1rem rgb(96, 95, 95);
+    color: rgb(255, 255, 255);
+    font-size: 1.1rem;
+    font-weight: bolder;
+}
+
+.float:hover{
+    color:rgb(45, 55, 128);
+    background-color: rgb(205, 203, 203);
+}
+.floating-div>div:hover{
+    color: rgb(45, 55, 128);
+
+}
+
+
+@media only screen and (max-width:1200px){
+ 
+    .floating-div{
+        
+        width: 8rem;
+        height: 3.5rem;
+        transform: scale(0.9);
+    }
+}
