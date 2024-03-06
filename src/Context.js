@@ -9,7 +9,7 @@ function Context(props) {
     const [openLand, setOpenLand] = useState(false);
     const[stud,setStud]=useState("")
     const[comp,setComp]=useState("")
-    const baseUrl="http://localhost:2024"
+    const baseUrl="https://akj-job-app-server-1.onrender.com"
   return (
     <AKJContext.Provider value={{openCom,setOpenCom,openLand,setOpenLand,baseUrl,stud,setStud,comp,setComp}}>
         {props.children}
