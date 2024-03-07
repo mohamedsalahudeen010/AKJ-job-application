@@ -31,6 +31,7 @@ export const fetchCompanies=(baseUrl)=>{
                 }
             })
             const data=await response.json()
+            console.log(data)
             dispatch(fetchCompanySuccess(data))
         } catch (error) {
             console.log(error)
