@@ -12,6 +12,7 @@ import { useContext } from "react";
 import { AKJContext } from "../../Context";
 import NavBar from "../../components/NavBar/NavBar";
 import { fetchAddJobs } from "../../redux/Jobs/jobsAction";
+import { fetchUpdateCreditCompany } from "../../redux/Companies/companyAction";
 
 
 const producerValidationSchema=yup.object({
@@ -39,6 +40,14 @@ function AddJob() {
     validationSchema:producerValidationSchema,
     onSubmit:(newJob)=>{
       console.log("onSubmit triggered",newJob)
+      let totalCredit=JSON.parse(localStorage.getItem("data")).credit
+      
+      let credit=totalCredit-(values.role.length+values.minimumCTC.length+values.maximumCTC.length+values.location.length)
+      let data={
+        name:localStorage.getItem("name-company"),
+        credit:credit
+      }
+      dispatch(fetchUpdateCreditCompany(baseUrl,data))
       dispatch(fetchAddJobs(baseUrl,newJob))
       navigate("/companyJobs")
     }
