@@ -39,7 +39,8 @@ export const fetchStudent=(baseUrl,email)=>{
                   },
             })
             const data=await response.json()
-
+            localStorage.removeItem("data")
+            localStorage.setItem("data",JSON.stringify(data.student));
             dispatch(fetchStudentSuccess(data))
         } catch (error) {
             console.log(error)
@@ -48,3 +49,27 @@ export const fetchStudent=(baseUrl,email)=>{
     }
 }
 
+
+export const fetchUpdateCreditStudent=(baseUrl,application)=>{
+   
+    return async (dispatch)=>{
+        // dispatch(updateApplication(application))
+        
+        try {
+            const response=await 
+            fetch(`${baseUrl}/studentLogin/credit`,{
+                method:"POST",
+                body:JSON.stringify(application),
+                headers:{
+                    "Content-Type":"application/json",
+              
+                 }
+            })
+            const data=await response.json()
+           
+        } catch (error) {
+            console.log(error)
+           
+        }
+    }
+}
