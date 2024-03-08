@@ -14,6 +14,7 @@ import NavBar from "../../components/NavBar/NavBar";
 import { fetchAddJobs } from "../../redux/Jobs/jobsAction";
 import { useSelector } from "react-redux";
 import { fetchAddApplication } from "../../redux/Application/applicationAction";
+import { fetchUpdateCreditStudent } from "../../redux/student/studentAction";
 
 
 const applicationValidationSchema=yup.object({
@@ -54,6 +55,19 @@ function ApplicationPage() {
     validationSchema:applicationValidationSchema,
     onSubmit:(newJob)=>{
       console.log("onSubmit triggered",newJob)
+      let totalCredit=JSON.parse(localStorage.getItem("data")).credit
+      console.log(totalCredit)
+      let credit=totalCredit-(values.role.length+values.minimumCTC.length+values.maximumCTC.length+values.location.length)
+      console.log("CREDITTT",credit)
+      let dataStudent={
+        email:localStorage.getItem("email"),
+        credit:credit
+      }
+      let dataCompany={
+        email:jobs[0].companyName,
+        credit:25
+      }
+      dispatch(fetchUpdateCreditStudent(baseUrl,dataStudent))
       dispatch(fetchAddApplication(baseUrl,newJob))
       navigate("/jobs")
     }
